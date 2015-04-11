@@ -2,15 +2,20 @@ package org.fsdev.roulette.domain;
 
 import java.math.BigInteger;
 
-public class Player {
-    private String name;
-    private BigInteger totalWin;
-    private BigInteger totalBets;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-    public Player(String name, BigInteger totalWin, BigInteger totalBets) {
+public class Player {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public final String name;
+    private BigInteger money;
+    private BigInteger betCount;
+
+    public Player(String name, BigInteger money, BigInteger betCount) {
         this.name = name;
-        this.totalWin = totalWin;
-        this.totalBets = totalBets;
+        this.money = money;
+        this.betCount = betCount;
     }
 
     @Override
@@ -19,7 +24,18 @@ public class Player {
     }
 
     public void wins(BigInteger amount) {
-        totalBets.add(BigInteger.ONE);
-        totalWin.add(amount);
+        betCount.add(BigInteger.ONE);
+        money.add(amount);
+
+        logger.debug("{} won {}", name, amount);
+    }
+
+    public void loses(BigInteger amount) {
+        if (money.compareTo(amount) < 0) {
+            throw new IllegalArgumentException("Player can't place bet, would ran out of money");
+        }
+
+        money.subtract(amount);
+        logger.debug("{} lost {}", name, amount);
     }
 }

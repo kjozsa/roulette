@@ -12,4 +12,9 @@ public abstract class Bet {
     }
 
     public abstract BigInteger amountWon(Field rolledField);
+
+    @Override
+    public String toString() {
+        return String.format("bet for %s for %d", player, amount);
+    }
 }
