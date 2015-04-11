@@ -1,13 +1,13 @@
 package org.fsdev.roulette.domain;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class Player {
     private String name;
-    private BigDecimal totalWin;
-    private BigDecimal totalBets;
+    private BigInteger totalWin;
+    private BigInteger totalBets;
 
-    public Player(String name, BigDecimal totalWin, BigDecimal totalBets) {
+    public Player(String name, BigInteger totalWin, BigInteger totalBets) {
         this.name = name;
         this.totalWin = totalWin;
         this.totalBets = totalBets;
@@ -16,5 +16,10 @@ public class Player {
     @Override
     public String toString() {
         return name;
+    }
+
+    public void wins(BigInteger amount) {
+        totalBets.add(BigInteger.ONE);
+        totalWin.add(amount);
     }
 }

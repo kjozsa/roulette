@@ -1,6 +1,6 @@
 package org.fsdev.roulette;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Scanner;
 import javax.annotation.PostConstruct;
 
@@ -26,11 +26,11 @@ public class Loader {
         try (Scanner scanner = new Scanner(playersFile.getInputStream())) {
             while (scanner.hasNextLine()) {
                 String[] tokens = scanner.nextLine().split(",");
-                Player player = new Player(tokens[0], new BigDecimal(tokens[1]), new BigDecimal(tokens[2]));
+                Player player = new Player(tokens[0], new BigInteger(tokens[1]), new BigInteger(tokens[2]));
                 board.playerArrived(player);
             }
         } catch (Exception e) {
-            throw new RuntimeException("failed to load players file " + playersFile.getFilename());
+            throw new RuntimeException("failed to load players file " + playersFile.getFilename(), e);
         }
     }
 }

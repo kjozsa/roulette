@@ -2,7 +2,6 @@ package org.fsdev.roulette;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -30,8 +29,6 @@ public class Announcer implements Runnable {
 
     @Override
     public void run() {
-        logger.info("# announce announce");
+        logger.info("# winning number is " + (int) (Math.random() * 36 + 1));
     }
-
-
 }
