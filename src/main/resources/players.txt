@@ -1,2 +1,2 @@
-Tiki_Monkey,1,2
-Barbara,2,1
+X,10,2
+Y,20,1
